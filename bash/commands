@@ -1,0 +1,3 @@
+# replace text in all files of current directory
+find . -type f -exec sed -i "s/domain01/mail-test-env\/domain01/g" {} ";"
+
