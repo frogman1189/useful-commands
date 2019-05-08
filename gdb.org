@@ -1,0 +1,114 @@
+* nice setup
+to get a nice view of registers and source you can open gdb with tui (gdbtui or gdb -tui)
+also inside the prompt you can go layout asm, layout regs, and presumably more.
+
+to find entry point: info file
+* Compile for debugging
+gcc -g -o file file.c
+the -g flag adds extra information that is used by gdb, but will likely mess with other debuggers
+
+* Common Commands
+** x $esp
+print value at location $esp points to
+** x/s $esp
+print value at location $esp points to as string.
+** i r
+shows all registers
+** i r eax
+show eax
+
+** p $eax
+print eax
+
+** display $eax
+display eax after each pause, step, etx
+
+** l
+list 10 lines of source
+** l 50
+list 50 lines of source
+** l function
+list source of function
+
+** b main
+puts a breakpoint at label main
+
+** b
+puts breakpoint at current line
+
+** b N
+puts break point at line N
+
+** b +N
+puts break point N lines down from current line
+
+** b fn
+Puts a breakpoint in front of functions fn
+
+
+** watch x == 3
+sets a watchpoint which pauses program when a condition changes (when x==3 changes)
+
+
+** d N
+deletes breakpoint number N
+
+** info break
+   List breakpoints
+
+** r
+run program until breakpoint or error
+** c
+Continue program until breakpoint or error
+** f
+run until current function is finished
+
+** s
+Run next line of program
+** s N
+run next N lines of program
+** n
+like s but does not step into functions
+
+** u N
+Runs until you gert N lines in front of the current line
+
+** p var
+print current value of variable "var"
+
+** set x = y
+set var x to value/var y
+
+
+** call function()
+calls user-defined or system functions
+
+
+** display x
+display var x after every step/pause
+** undisplay x
+stop displaying x
+
+** bt
+print stack trace
+
+
+** handle [signalname] [action]
+instruct gdb to handle certain signals in a certain way when they occur
+
+** u
+go up a level in the stack
+** d
+go down a level in the stack
+
+** q
+Quit GDB
+* Useful snippets
+** reverse step
+you can do reverse-steps in gdb as long as you've recorded output to reverse step through
+The process for this is to:
+b main
+r
+record
+summarised that adds a breakpoint to main. runs until it hits main, then sets up recording for the rest of main.
+to step back from this point use reverse-step and reverse-continu
