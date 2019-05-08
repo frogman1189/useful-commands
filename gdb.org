@@ -3,11 +3,22 @@ to get a nice view of registers and source you can open gdb with tui (gdbtui or 
 also inside the prompt you can go layout asm, layout regs, and presumably more.
 
 to find entry point: info file
+
+to reduce size dissassembly you can go:
+set disassemble-next-line on or display/i $pc
+
+** change disassembly type
+set disassembly-flavour intel
+
 * Compile for debugging
 gcc -g -o file file.c
 the -g flag adds extra information that is used by gdb, but will likely mess with other debuggers
 
 * Common Commands
+** ni
+next instruction
+** si
+step instruction
 ** x $esp
 print value at location $esp points to
 ** x/s $esp
