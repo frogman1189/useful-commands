@@ -1,3 +1,15 @@
+* patching
+in order to patch open your file with:
+gdb --write -q file
+disas/r addr1, addr2 (or function)
+set *addr=(int)0x90909090
+	bytes have to be in little endian order (backwards effectively)
+	when setting the addr have to provide 4 bytes otherwise it pads to fill left over with ff (even if using char or other type)
+disas/r addr1, addr2 (double check that it looks correct)
+q
+(apparently quiting immediatly is important for making it save)
+read more here: https://stackoverflow.com/questions/26173850/use-gdb-to-modify-binary
+
 * nice setup
 to get a nice view of registers and source you can open gdb with tui (gdbtui or gdb -tui)
 also inside the prompt you can go layout asm, layout regs, and presumably more.
