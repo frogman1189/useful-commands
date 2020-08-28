@@ -1,3 +1,22 @@
 # replace text in all files of current directory
 find . -type f -exec sed -i "s/domain01/mail-test-env\/domain01/g" {} ";"
 
+# mount .img file system
+First find out partition locations:
+fdisk -l file.img
+
+then
+mount -t type -o loop,offset=$((start_segment * 512 (can vary))) src dest
+
+# ~set operations on file contents
+# must be sorted
+
+  578  sort changelog/fic-03-changelog > fic-03_s
+  579  comm -1 -2 comm_01-02 fic-03_s > comm_01-03
+
+# awk select a certain column
+
+awk '{print $column}'
+
+# sorts by second column and prints in original order
+awk '{print $2,"\t",$1}' | sort | awk '{print $2,"\t",$1}'> comm_added-changed-no-boot_md5

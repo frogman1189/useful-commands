@@ -11,8 +11,11 @@ q
 read more here: https://stackoverflow.com/questions/26173850/use-gdb-to-modify-binary
 
 * nice setup
-to get a nice view of registers and source you can open gdb with tui (gdbtui or gdb -tui)
-also inside the prompt you can go layout asm, layout regs, and presumably more.
+set step-mode on
+
+to get a nice view of registers and source you can open gdb with tui
+(gdbtui or gdb -tui) also inside the prompt you can go layout asm,
+layout regs, and presumably more.
 
 to find entry point: info file
 

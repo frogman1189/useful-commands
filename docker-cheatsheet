@@ -1,0 +1,89 @@
+* List Docker CLI commands
+docker
+docker container --help
+
+** Display Docker version and info
+docker --version
+docker version
+docker info
+
+** Execute Docker image
+docker run hello-world
+*** docker run
+-d run in detached mode
+-p 4000:80 maps local port 4000 to the containers port 80
+
+
+
+** List Docker images
+docker image ls
+
+** List Docker containers (running, all, all in quiet mode)
+docker container ls
+docker container ls --all
+docker container ls -aq
+** Stop Docker containers
+docker container stop 1fa4ab2cf395
+** extended cheat sheet
+docker build -t friendlyhello .  # Create image using this directory's Dockerfile
+docker run -p 4000:80 friendlyhello  # Run "friendlyhello" mapping port 4000 to 80
+docker run -d -p 4000:80 friendlyhello         # Same thing, but in detached mode
+docker container ls                                # List all running containers
+docker container ls -a             # List all containers, even those not running
+docker container stop <hash>           # Gracefully stop the specified container
+docker container kill <hash>         # Force shutdown of the specified container
+docker container rm <hash>        # Remove specified container from this machine
+docker container rm $(docker container ls -a -q)         # Remove all containers
+docker image ls -a                             # List all images on this machine
+docker image rm <image id>            # Remove specified image from this machine
+docker image rm $(docker image ls -a -q)   # Remove all images from this machine
+docker login             # Log in this CLI session using your Docker credentials
+docker tag <image> username/repository:tag  # Tag <image> for upload to registry
+docker push username/repository:tag            # Upload tagged image to registry
+docker run username/repository:tag                   # Run image from a registry
+* How It works
+Docker has 3 broad levels which it works:
+===========
+| Stack   |
+===========
+|Services |
+===========
+|Container|
+===========
+* Container
+To setup a container first you create a folder and a Dockerfile for
+that container.
+The Dockerfile has some different reserved keywords that does stuff:
+** Dockerfile
+*** FROM image:image-spec
+uses a specific docker image
+e.g FROM python:2.7-slim
+*** WORKDIR work_dir
+sets the working directory to /work_dir
+e.g WORKDIR /app
+*** COPY host_src container_dest
+copies the src directorie's contents into the container's destination
+directory 
+e.g COPY . /app 
+
+NOTE: It is best to reduce the amount of copy's as each copy is
+cacheable and it helps do stuff. (https://blog.docker.com/2019/07/intro-guide-to-dockerfile-best-practices/)
+*** RUN command
+runs some command on the container. Typically used for installing stuff.
+e.g RUN pip install something
+
+NOTE: Like copy it is best to reduce the amount of RUNS
+cacheable and it helps do stuff. (https://blog.docker.com/2019/07/intro-guide-to-dockerfile-best-practices/)
+*** EXPOSE port
+exposes a port to outside the container
+e.g EXPOSE 80
+*** ENV variable value
+sets an environment variable
+e.g ENV NAME World
+*** CMD [command, arg1, arg2, ...]
+Run some command when the container launches
+e.g CMD ["python", "app.py"]
+* Services
+In order to set up services you need to install docker-compose. On Mac
+and Windows you just download it from their site. From linux you go to:
+https://github.com/docker/compose/releases

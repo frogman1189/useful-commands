@@ -1,0 +1,13 @@
+ssh -Y ....
+enables x11 window forwarding
+
+ssh -J hop_user@hop user@real_dest
+enables you to ssh into a destination pivoting from location specified by -J
+
+# ssh tunnel https://www.kevssite.com/connect-to-postgresql-using-an-ssh-tunnel/
+
+ssh -L 2222:localhost:5432 user@server-ip
+#then to connect to say postgres
+psql -h localhost -p 2222 ....
+#(however you also need to modify pg_hba.conf in order to allow this
+ to work for postgres)

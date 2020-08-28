@@ -1,0 +1,3 @@
+view orphans: pacman -Qdt
+view orphans with info: pacman -Qdti
+Clear cache: pacman -Scc (this can free a lot of space!)

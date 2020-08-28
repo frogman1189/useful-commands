@@ -1,0 +1,4 @@
+Fix nickname is already in use
+a) /msg nickserv ghost <your_nickname> <password>
+b) /msg nickserv <your_nickname>
+b) /msg NickServ identify <password>
