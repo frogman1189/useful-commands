@@ -1,0 +1,5 @@
+repeat command: C-x z then push z to continue repeating
+traverse brackets: C-M-p and C-M-n
+execute elisp: C-M-x
+occur: M-x occur
+regex search: C-M-s
